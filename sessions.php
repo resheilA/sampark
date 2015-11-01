@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+<<<<<<< HEAD
 if(isset($_SESSION['contact']))
 {
 // ADD SESSIONS
@@ -30,3 +31,16 @@ header("location:insideuser.php");
 ?>
 
 
+=======
+if(isset($_SESSION['user']))
+{
+$email=$_SESSION['user'];
+}
+
+if(!isset($_SESSION['user']))
+{
+header("location:home.php");
+}
+
+?>
+>>>>>>> origin/master
