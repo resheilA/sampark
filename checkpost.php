@@ -4,6 +4,13 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
+<?php 
+session_start();
+if(isset($_SESSION['contact']))
+{
+header("location:insideuser.php");
+}
+?>
 <html>
 	<head>
 		<title>Sampark India - Registration</title>
@@ -90,6 +97,11 @@ include("connect.php");
 $email=$_POST['number'];
 $password=$_POST['village'];                           
 
+ 
+session_start();
+$_SESSION['contact']=$email;
+
+
 $sql1="SELECT * FROM user_database WHERE Contact='$email'";
 
 $result1=mysql_query($sql1);
@@ -135,9 +147,7 @@ else
 
 
 // ADD SESSIONS
-session_start();
-$_SESSION['contact']=$email;
-$_SESSION['village'] = $password;
+
 
 echo("<script>location.href = 'insideuser.php'</script>");
 
@@ -153,49 +163,12 @@ echo("<script>location.href = 'insideuser.php'</script>");
 		</section>
 				</div>
 			</div>
-
-<!-- Footer -->
-			<div id="footer">
-				<div class="container">
-
-					<!-- Lists -->
-						<div class="row">
-							<div class="8u">
-								<section>
-									<header class="major">
-										<h2>Donec dictum metus</h2>
-										<span class="byline">Quisque semper augue mattis wisi maecenas ligula</span>
-									</header>
-								</section>
-							</div>
-							<div class="4u">
-								<section>
-									<header class="major">
-										<h2>मोबाइल फोन कॉल के माध्यम से समस्या को हल करने के लिए , 9824213256 पर कॉल करें |</h2>
-										<span class="byline">Mattis wisi maecenas ligula</span>
-									</header>
-									<ul class="contact">
-										<li>
-											<span class="address">Address</span>
-											<span>1234 Somewhere Road #4285 <br />Nashville, TN 00000</span>
-										</li>
-										<li>
-											<span class="mail">Mail</span>
-											<span><a href="#">someone@untitled.tld</a></span>
-										</li>
-										<li>
-											<span class="phone">Phone</span>
-											<span>(000) 000-0000</span>
-										</li>
-									</ul>	
-								</section>
-							</div>
-						</div>
+				
+				
 
 					<!-- Copyright -->
 						<div class="copyright">
-							Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
-						</div>
+							<h2>मोबाइल फोन कॉल के माध्यम से समस्या को हल करने के लिए , 9824213256 पर कॉल करें |</h2>					</div>
 
 				</div>
 			</div>

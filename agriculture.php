@@ -4,10 +4,9 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-
-
-<?php include("header.php"); ?>
 <?php include("sessions.php");?>
+<?php include("header.php"); ?>
+
 		<!-- Main -->
 			<div id="main" class="wrapper style1">
 				<div class="container">
@@ -17,21 +16,23 @@
 						<div id="content" class="8u skel-cell-important">
 							<section>
 								<header class="major">
-									<h2>Parshn</h2>
-									<span class="byline">Ask for support to people around you. <br><b><font size='2'>Note: Your request will be reviewed within 36 hours and then it will be out for polling </font></b></span><br>
-									<br>
-									What is your problem?
-									<form method='post'>
-										<textarea placeholder='Tell us your problem..' name='question'></textarea>
-										<input type='hidden' name='spkey' value='012'>
-										<center><input type='submit' value='Submit' style='margin-top:.2cm;height:1cm;font-size:.5cm;padding:0cm;'></center>
-										</form>
+									<h2>Kheti</h2>
+									<span class="byline">The problems of Indian Farmers</span><br>
+									<br><form method='post'>
+								    Please enter the problems you are facing in farming
+									<textarea placeholder='Mention the problems you are facing' name='problem'></textarea>
+									<center><input type='submit' value='Submit'  style='padding:0cm;margin-top:.2cm;font-size:.5cm;'></center>
+									<input type='hidden' value='012' name='spkey'>
+									<br><br></form>
+									Language Problem <a href="tel:+900300400"><input type='submit' value='Click here to call' style='height:1cm;padding:0cm;'></a>
 								</header>
-						
+								
+								
 								
 								</section>
 						</div>
-		<!-- Sidebar -->
+
+	<!-- Sidebar -->
 						<div id="sidebar" class="4u sidebar">
 							<section>
 								<header class="major">
@@ -131,10 +132,10 @@
 								{
 								include("connect.php");
 					            $login_time = date('Y-m-d H:i:s');
-								$password=$_POST['question']; 
+								$password=$_POST['problem']; 
 								include('connect.php');  
 						
-								$sql2="INSERT INTO polling_request (Contact, Problem, In_time) VALUES ('$contact','$password','$login_time')";          //<------ Validation for table signup
+								$sql2="INSERT INTO farm_help (Contact, Problem) VALUES ('$contact','$password')";          //<------ Validation for table signup
 								$sql_result2 = mysql_query($sql2,$connection) or die();
 
 								if(!$sql_result2)
@@ -145,7 +146,7 @@
 								{
 								//echo"<h2><br>Thanks for signing up";
 
-								echo("Thanks For submitting your request we will put it up within 36 hours");
+								echo("We will reply you as soon as possible");
 
 								}
 								}
@@ -190,7 +191,7 @@
 								<?php
 									include('connect.php');
 
-								 $sql = "SELECT * FROM events where Village = '$village' ORDER BY Put_in DESC;"
+								 $sql = "SELECT * FROM events where Village = '$village' ORDER BY Put_in;"
 											 or die("Couldnt find the table");
 											 
 											 $sql_result = mysql_query($sql,$connection) or die ( mysql_error());
@@ -210,21 +211,11 @@
 				</div>
 			</div>
 
+					<!-- Copyright -->
+						<div class="copyright">
+											<h2>मोबाइल फोन कॉल के माध्यम से समस्या को हल करने के लिए , 9824213256 पर कॉल करें |</h2>	
+											</div>
 
-<!-- Footer -->
-			<div id="footer">
-				<div class="container">
-
-					<!-- Lists -->
-						<div class="row">
-							<div class="4u">
-								<section>
-									<header class="major">
-										<h2>मोबाइल फोन कॉल के माध्यम से समस्या को हल करने के लिए , 9824213256 पर कॉल करें |</h2>									
-									</header>
-								</section>
-							</div>
-						</div>
 				</div>
 			</div>
 

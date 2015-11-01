@@ -5,9 +5,8 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 
-
-<?php include("header.php"); ?>
 <?php include("sessions.php");?>
+<?php include("header.php"); ?>
 		<!-- Main -->
 			<div id="main" class="wrapper style1">
 				<div class="container">
@@ -17,21 +16,37 @@
 						<div id="content" class="8u skel-cell-important">
 							<section>
 								<header class="major">
-									<h2>Parshn</h2>
-									<span class="byline">Ask for support to people around you. <br><b><font size='2'>Note: Your request will be reviewed within 36 hours and then it will be out for polling </font></b></span><br>
+									<h2>Jaagrat</h2>
+									<span class="byline">Know what is going around you</span><br>
 									<br>
-									What is your problem?
-									<form method='post'>
-										<textarea placeholder='Tell us your problem..' name='question'></textarea>
-										<input type='hidden' name='spkey' value='012'>
-										<center><input type='submit' value='Submit' style='margin-top:.2cm;height:1cm;font-size:.5cm;padding:0cm;'></center>
-										</form>
+									<ul>Updates
+									<?php
+									include('connect.php');
+
+									$sql = "SELECT * FROM events where Village = '$village' ORDER BY Put_in;"
+											 or die("Couldnt find the table");
+											 
+											 $sql_result = mysql_query($sql,$connection) or die ( mysql_error());
+											 											 											 
+											 while($row = mysql_fetch_array($sql_result))
+											 {
+											$event = $row["Event"];
+											
+											echo "<li>$event<hr></li>";
+											}
+								?>
+									</ul>
+									<br><br>
+									<table><tr><td><a href="tel:+900300400">To get the latest info click here</a></td></tr></table>
 								</header>
-						
+								
+								
 								
 								</section>
 						</div>
-		<!-- Sidebar -->
+
+	
+						<!-- Sidebar -->
 						<div id="sidebar" class="4u sidebar">
 							<section>
 								<header class="major">
@@ -119,37 +134,12 @@
 												{
 												
 												echo("Thanks For submitting");
-												echo "<script>location.href = ''</script>";
+												echo "<script>location.href = 'insideuser.php'</script>";
 												}
 												}
 												else 
 												{
 												// THE OTHER INSERT QUERY
-												
-												
-								if ($_SERVER['REQUEST_METHOD'] == 'POST')
-								{
-								include("connect.php");
-					            $login_time = date('Y-m-d H:i:s');
-								$password=$_POST['question']; 
-								include('connect.php');  
-						
-								$sql2="INSERT INTO polling_request (Contact, Problem, In_time) VALUES ('$contact','$password','$login_time')";          //<------ Validation for table signup
-								$sql_result2 = mysql_query($sql2,$connection) or die();
-
-								if(!$sql_result2)
-								{
-								echo "<br><h2> Couldnt add record.";
-								} 
-								else 
-								{
-								//echo"<h2><br>Thanks for signing up";
-
-								echo("Thanks For submitting your request we will put it up within 36 hours");
-
-								}
-								}
-								
 												}
 												}
 								?>
@@ -182,28 +172,7 @@
 									----------------->
 								</div>
 							</section>
-							<section>
-								<header class="major">
-									<h2>Govt/NGO Updates</h2>
-								</header>
-								<ul class="default">
-								<?php
-									include('connect.php');
-
-								 $sql = "SELECT * FROM events where Village = '$village' ORDER BY Put_in DESC;"
-											 or die("Couldnt find the table");
-											 
-											 $sql_result = mysql_query($sql,$connection) or die ( mysql_error());
-											 											 											 
-											 while($row = mysql_fetch_array($sql_result))
-											 {
-											$event = $row["Event"];
-											
-											echo "<li>$event</li>";
-											}
-								?>
-								</ul>
-							</section>
+							
 						</div>
 						
 					</div>
@@ -211,20 +180,11 @@
 			</div>
 
 
-<!-- Footer -->
-			<div id="footer">
-				<div class="container">
+					<!-- Copyright -->
+						<div class="copyright">
+										<h2>मोबाइल फोन कॉल के माध्यम से समस्या को हल करने के लिए , 9824213256 पर कॉल करें |</h2>	
+										</div>
 
-					<!-- Lists -->
-						<div class="row">
-							<div class="4u">
-								<section>
-									<header class="major">
-										<h2>मोबाइल फोन कॉल के माध्यम से समस्या को हल करने के लिए , 9824213256 पर कॉल करें |</h2>									
-									</header>
-								</section>
-							</div>
-						</div>
 				</div>
 			</div>
 
